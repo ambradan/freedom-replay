@@ -126,7 +126,8 @@ The audit itself is pre-registered and reconstructible from a commit chain: 4b69
 @misc{danesin2026replayaudit,
   author = {Danesin, Ambra},
   title  = {Replay Audit for Logged LLM Agents},
-  year   = {2026}
+  year   = {2026},
+  url    = {https://github.com/ambradan/freedom-replay}
 }
 ```
 
