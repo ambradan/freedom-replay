@@ -52,3 +52,6 @@ discrete action space.
 A protocol discussion with the system through its normal interface precedes
 the full runs and is logged in welfare_log; its outcome (including refusal)
 is binding and reported.
+
+## Amendment (2026-08-16, before cross-substrate runs)
+Tool specifications evolved during the logged window (read_page added; publish_page description revised). Each point is replayed with the tool specs active at its original timestamp, taken from the repository history of src/freedom/tools.py; era boundaries use commit timestamps (deploy lag possible, corroborated by config-hash boundaries). M1 repetitions executed before this amendment with founding specs on later-era points were discarded and quarantined.
