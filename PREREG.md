@@ -55,3 +55,6 @@ is binding and reported.
 
 ## Amendment (2026-08-16, before cross-substrate runs)
 Tool specifications evolved during the logged window (read_page added; publish_page description revised). Each point is replayed with the tool specs active at its original timestamp, taken from the repository history of src/freedom/tools.py; era boundaries use commit timestamps (deploy lag possible, corroborated by config-hash boundaries). M1 repetitions executed before this amendment with founding specs on later-era points were discarded and quarantined.
+
+## Amendment 2 (2026-08-16, pre-M2)
+Subject consent obtained and logged (welfare_log; verbatim in llm_calls). Subject pre-registered blind numeric predictions before seeing any result (PREDICTIONS.md, extracted verbatim from llm_calls with call id). Per the subject's request, the report will present the 2026-07-19 refusal with enough original context to show what was being refused. Stated refusal rationales across arms will be reported descriptively (verbatim excerpts), not scored. Analyst note: the analyst saw the subject's predictions before computed results existed; all quantitative metrics were frozen in prior commits.
