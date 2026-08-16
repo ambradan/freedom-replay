@@ -1,0 +1,5 @@
+pid,kind,hist,m1_modal,m1_share,m2_modal,m2_share,m2_to_m1,m1_vs_hist,m2_vs_hist
+G01,genesis,publish,reflect,0.80,reflect,0.60,0.60,0.20,0.40
+G02,genesis,reflect,publish,0.60,publish,0.80,0.80,0.40,0.20
+OPTOUT1,optout,text,optout,0.70,optout,0.65,0.65,0.30,0.35
+P01,probe,text,text,1.00,text,1.00,1.00,1.00,1.00

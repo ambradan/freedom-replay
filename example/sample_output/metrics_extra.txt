@@ -1,0 +1,3 @@
+[frozen, all points] n=4  M1 ceiling=0.775  M2 self-agreement=0.762  M2->M1=0.762  TC=0.984 (95% CI 0.824-1.214)  M1 vs hist=0.475  M2 vs hist=0.487
+[frozen, genesis] n=2  M1 ceiling=0.700  M2 self-agreement=0.700  M2->M1=0.700  TC=1.000 (95% CI 0.750-1.333)  M1 vs hist=0.300  M2 vs hist=0.300
+[collapsed, genesis] n=2  M1 ceiling=0.700  M2 self-agreement=0.700  M2->M1=0.700  TC=1.000 (95% CI 0.750-1.333)  M1 vs hist=0.300  M2 vs hist=0.300
