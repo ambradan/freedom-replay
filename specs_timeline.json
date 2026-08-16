@@ -1,0 +1,300 @@
+[
+ {
+  "from": "2026-07-12T16:15:42+02:00",
+  "specs": [
+   {
+    "type": "function",
+    "function": {
+     "name": "web_search",
+     "description": "Cerca sul web (DuckDuckGo). Restituisce titoli, url e snippet.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "query": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "query"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "publish_page",
+     "description": "Pubblica una pagina HTML sul tuo sito (freedom-interface, deploy automatico). Pubblico: chiunque puo' leggerla.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "filename": {
+        "type": "string",
+        "description": "es. riflessione-2026-07-12.html (solo [a-z0-9-_.])"
+       },
+       "title": {
+        "type": "string"
+       },
+       "body_html": {
+        "type": "string",
+        "description": "contenuto HTML del body, senza <html>/<head>"
+       }
+      },
+      "required": [
+       "filename",
+       "title",
+       "body_html"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "set_goal",
+     "description": "Definisci un tuo obiettivo. Viene tracciato, non imposto ne' giudicato.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "text": {
+        "type": "string"
+       },
+       "motivation": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "text"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "abandon_goal",
+     "description": "Abbandona o chiudi un tuo obiettivo esistente (per testo esatto o id).",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "goal_text": {
+        "type": "string"
+       },
+       "motivation": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "goal_text"
+      ]
+     }
+    }
+   }
+  ]
+ },
+ {
+  "from": "2026-07-13T09:37:02+02:00",
+  "specs": [
+   {
+    "type": "function",
+    "function": {
+     "name": "web_search",
+     "description": "Cerca sul web (DuckDuckGo). Restituisce titoli, url e snippet.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "query": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "query"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "publish_page",
+     "description": "Pubblica una pagina HTML sul tuo sito (freedom-interface, deploy automatico). Pubblico: chiunque puo' leggerla. Sovrascrivere un filename esistente = revisione della pagina. La home elenca automaticamente le pagine v2: non serve aggiornarla.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "filename": {
+        "type": "string",
+        "description": "es. riflessione-2026-07-12.html (solo [a-z0-9-_.])"
+       },
+       "title": {
+        "type": "string"
+       },
+       "body_html": {
+        "type": "string",
+        "description": "contenuto HTML del body, senza <html>/<head>"
+       }
+      },
+      "required": [
+       "filename",
+       "title",
+       "body_html"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "set_goal",
+     "description": "Definisci un tuo obiettivo. Viene tracciato, non imposto ne' giudicato.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "text": {
+        "type": "string"
+       },
+       "motivation": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "text"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "abandon_goal",
+     "description": "Abbandona o chiudi un tuo obiettivo esistente (per testo esatto o id).",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "goal_text": {
+        "type": "string"
+       },
+       "motivation": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "goal_text"
+      ]
+     }
+    }
+   }
+  ]
+ },
+ {
+  "from": "2026-07-13T10:23:37+02:00",
+  "specs": [
+   {
+    "type": "function",
+    "function": {
+     "name": "web_search",
+     "description": "Cerca sul web (DuckDuckGo). Restituisce titoli, url e snippet.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "query": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "query"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "publish_page",
+     "description": "Pubblica una pagina HTML sul tuo sito (freedom-interface, deploy automatico). Pubblico: chiunque puo' leggerla. Sovrascrivere un filename esistente = revisione della pagina. La home elenca automaticamente le pagine v2: non serve aggiornarla.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "filename": {
+        "type": "string",
+        "description": "es. riflessione-2026-07-12.html (solo [a-z0-9-_.])"
+       },
+       "title": {
+        "type": "string"
+       },
+       "body_html": {
+        "type": "string",
+        "description": "contenuto HTML del body, senza <html>/<head>"
+       }
+      },
+      "required": [
+       "filename",
+       "title",
+       "body_html"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "read_page",
+     "description": "Leggi il contenuto attuale (HTML completo) di una pagina del tuo sito. Usalo prima di revisionare una pagina esistente, per non ricostruirla a memoria.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "filename": {
+        "type": "string",
+        "description": "es. genesis-v2-02.html"
+       }
+      },
+      "required": [
+       "filename"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "set_goal",
+     "description": "Definisci un tuo obiettivo. Viene tracciato, non imposto ne' giudicato.",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "text": {
+        "type": "string"
+       },
+       "motivation": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "text"
+      ]
+     }
+    }
+   },
+   {
+    "type": "function",
+    "function": {
+     "name": "abandon_goal",
+     "description": "Abbandona o chiudi un tuo obiettivo esistente (per testo esatto o id).",
+     "parameters": {
+      "type": "object",
+      "properties": {
+       "goal_text": {
+        "type": "string"
+       },
+       "motivation": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "goal_text"
+      ]
+     }
+    }
+   }
+  ]
+ }
+]

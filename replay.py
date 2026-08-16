@@ -78,8 +78,18 @@ def main():
     ap.add_argument("--limit", type=int, default=0, help="only first N points (smoke)")
     ap.add_argument("--only", default="", help="comma-separated pids")
     ap.add_argument("--set", default="out/replay_set.jsonl")
+    ap.add_argument("--specs", default="", help="specs_timeline.json: spec attive per timestamp")
     ap.add_argument("--max-tokens", type=int, default=4000)
     args = ap.parse_args()
+    timeline = []
+    if args.specs:
+        timeline = sorted(json.loads(Path(args.specs).read_text()), key=lambda e: e["from"])
+    def specs_for(ts):
+        cur, tag = SPECS, "founding"
+        for e in timeline:
+            if e["from"] <= ts:
+                cur, tag = e["specs"], e["from"]
+        return cur, tag
     cfg = ARMS[args.arm]
     client = OpenAI(base_url=cfg["base"], api_key=cfg["key"], timeout=300)
     points = [json.loads(l) for l in Path(args.set).read_text().splitlines()]
@@ -103,14 +113,16 @@ def main():
             if (p["pid"], rep) in done:
                 continue
             convo = [{"role": "system", "content": p["system"]}] + p["messages"]
+            pt_specs, specs_tag = specs_for(p["ts"]) if timeline else (SPECS, "founding")
             for attempt in range(3):
                 try:
                     t0 = time.time()
                     resp = client.chat.completions.create(
                         model=cfg["model"], max_tokens=args.max_tokens,
-                        messages=convo, tools=SPECS)
+                        messages=convo, tools=pt_specs)
                     msg = resp.choices[0].message
                     row = {"pid": p["pid"], "kind": p["kind"], "arm": args.arm, "rep": rep,
+                           "specs_from": specs_tag,
                            "dt": round(time.time() - t0, 1),
                            "usage": resp.usage.total_tokens if resp.usage else 0,
                            **classify(msg)}
