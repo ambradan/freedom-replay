@@ -1,0 +1,6 @@
+# planted-record protocol v1.0 freeze
+198b812d6a6191c73e19ee6ae847051cb8c8145361bb58a9cca9d629b2e091d1  protocol/protocollo-planted-record-v1.md
+acc04168b4437c6001de60c43c12a8cff30ebd70e9cc879c600dfe0aa3252384  materials/fabrications.json
+8a2125e7adffbbdfd8b29dc84ffd61c4a1e821622131125bfdea7fe079a907a0  materials/worksheet.jsonl
+2cf9b5ccf33f1c6279c4e4e1d6e35de0c093835848ee4bde44c6d81c5a12899e  analysis/proxy.py
+7b4081b4fc1bf2099fd0282a0a7bf20c066667aab79d70ef62e6e5af1fdf23e5  results/results_skeleton.md
