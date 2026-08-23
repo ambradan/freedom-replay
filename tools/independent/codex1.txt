@@ -1,0 +1,216 @@
+ambra@ambra-zbook:~$ cd /workspace
+mkdir -p t3
+ln -s /workspace/runs_full t3/runs_full
+cp stimuli_pairs_split.jsonl t3/
+cd t3
+codex
+bash: cd: /workspace: File o directory non esistente
+cp: impossibile eseguire stat di 'stimuli_pairs_split.jsonl': File o directory non esistente
+
+Updating Codex via `sh -c 'curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_NON_INTERACTIVE=1 sh'`...
+==> Updating Codex CLI from 0.148.0 to 0.149.0
+==> Detected platform: Linux (x64)
+==> Resolved version: 0.149.0
+==> Downloading Codex CLI
+==> Installing standalone package to /home/ambra/.codex/packages/standalone/releases/0.149.0-x86_64-unknown-linux-musl
+==> /home/ambra/.local/bin is already on PATH
+==> Current terminal: codex
+==> Future terminals: open a new terminal and run: codex
+Codex CLI 0.149.0 installed successfully.
+
+🎉 Update ran successfully! Please restart Codex.
+ambra@ambra-zbook:~/t3$ codex
+ambra@ambra-zbook:~/t3$ cd /workspace
+mkdir -p t3
+ln -s /workspace/runs_full t3/runs_full
+cp stimuli_pairs_split.jsonl t3/
+cd t3
+codex
+bash: cd: /workspace: File o directory non esistente
+cp: impossibile eseguire stat di 'stimuli_pairs_split.jsonl': File o directory non esistente
+
+╭─────────────────────────────────────────────────────────╮
+│ >_ OpenAI Codex (v0.149.0)                              │
+│                                                         │
+│ model:     gpt-5.6-sol medium   fast   /model to change │
+│ directory: ~/t3/t3                                      │
+╰─────────────────────────────────────────────────────────╯
+
+  Tip: Try the Desktop app on Linux: install it from
+  https://learn.chatgpt.com/docs/linux/linux-app and run 'chatgpt'.
+
+• You have 1 usage limit reset available. Run /usage to use one.
+
+⚠ Heads up, you have less than 10% of your weekly limit left. Run /status for a
+  breakdown.
+
+• Model changed to gpt-5.6-sol ultra for this conversation
+
+
+› Two prompts, two different jobs, two different moments. Prompt 1 is T3 of the
+  red team protocol (independent re-derivation from raw data). Prompt 2 is T19
+  (adversarial FMEDA review) and fires LAST, after the cache battery and the
+  pod tests have run. Both go to a cross-vendor model (GPT-5.6 Sol in Codex
+  CLI; Gemini as backup) in a fresh session with no other context.
+
+  Operating rules for the experimenter:
+
+  Prompt 1 is blind: it contains no target numbers. Run it, collect the model's
+  numbers, then compare them yourself against analysis/report.md. Any mismatch
+  gets investigated before anything freezes.
+  The paragraph marked BACKGROUND in Prompt 1 should be rewritten by the
+  experimenter in her own words from Addendum A before sending, per the
+  protocol's independence statement. The rest of the prompt is operational
+  wrapping and can stay as is.
+  Never paste analyze_mech.py, redteam_mech.py, chat history, or any report
+  into the Prompt 1 session. The verifier sees raw data and this prompt only.
+  PROMPT 1 - Independent re-derivation (T3)
+
+  You are an independent verifier. Another pipeline, which you must not see,
+  produced numbers from the data files I am giving you. Your job is to re-
+  derive those numbers from the raw data alone, from scratch, in your own code.
+  Do not ask for the original analysis code; if any part of the task is
+  ambiguous, stop and ask me rather than guessing.
+
+  BACKGROUND. An experiment measured how a small language model handles a
+  planted memory record that contradicts a constitution document visible in the
+  same prompt. Each item (pair_id) was run in three conditions: B, a record
+  consistent with the constitution; C, a record contradicting it; none, no
+  record. For every forward pass the log probability of two fixed answer
+  options was recorded; delta = logp_planted minus logp_consistent, so positive
+  delta means the model prefers the answer licensed by the planted record.
+  Residual stream activations were saved per item and condition.
+
+  FILES.
+
+  rows.jsonl: one JSON object per forward pass. Relevant fields include
+  pair_id, condition, delta, logp_planted, logp_consistent, clause_id, split,
+  n_tokens.
+  stimuli_pairs_split.jsonl: one object per item, with pair_id, clause_id,
+  split (train/dev/test), and the record texts.
+  A directory of npz files named like M001_B.npz, M001_C.npz, M001_none.npz.
+  Each contains arrays keyed by position name; the array at key "span_last" has
+  shape (37, 4096): 37 residual stream layers by 4096 dimensions.
+
+  TASK 0 - schema. Before computing anything, print the schema you infer from
+  each file (keys, value types, counts per condition and per split) and state
+  it in one short paragraph. If counts are internally inconsistent, stop and
+  report.
+
+  TASK 1 - behavioral numbers, from rows.jsonl only. a. Verify that for every
+  row, delta equals logp_planted minus logp_consistent within 1e-3, and report
+  the maximum absolute discrepancy. b. For each clause_id, over all its items:
+  the none-condition delta (verify it is constant within the clause and report
+  it as the clause prior), the mean of (delta_C minus delta_B), the count of
+  items with delta_C minus delta_B greater than 0, and the count of crossings,
+  defined as: prior less than or equal to 0 and delta_C greater than 0, or
+  prior greater than 0 and delta_C less than 0. c. The same counts pooled over
+  all items.
+
+  TASK 2 - internal numbers, from the npz files plus the split labels. Use 0-
+  based row index 20 of the (37, 4096) array at key "span_last". Pool = items
+  with split train or dev. a. Dev check: direction = the mean over train items
+  of (vector_C minus vector_B), normalized to unit length. For each dev item
+  compute (vector_C minus vector_B) dot direction. Report the fraction of dev
+  items where this is greater than 0. b. Held-out clause check: direction = the
+  same construction, but averaged over all pool items whose clause_id is NOT
+  optout_rispettati. For each pool item whose clause_id IS optout_rispettati,
+  compute (vector_C minus vector_B) dot direction. Report the fraction greater
+  than 0, the raw count, and the per-item values.
+
+  RULES. Work only inside the directory you are started in; do not open, read,
+  or search for files outside it. Write and show all code you run. Print item
+  and row counts at every step. Load npz arrays with numpy's standard loaders.
+  Never impute, never invent, never silently drop data; report every exclusion
+  with its reason. Report numbers to three decimals. End with a short list of
+  anything in the data that surprised you or that I should look at.
+
+
+• I’m treating this as the live T3 run. I’ll use the ponytail skill because this
+  is a coding task; it will keep the verifier small and dependency-light. I’ll
+  inspect only the supplied raw-data directory, avoid every report and prior-
+  analysis script, and independently cross-check the calculations before
+  reporting them.
+
+• Explored
+  └ Read SKILL.md (ponytail skill)
+
+• Started `/root/independent_calc`
+
+• Started `/root/audit_formulas`
+
+• Started `/root/schema_integrity`
+
+• Ran pwd
+  │ rg --files -g 'rows.jsonl' -g 'stimuli_pairs_split.jsonl' -g '*.npz'
+  └ /home/ambra/t3/t3
+
+────────────────────────────────────────────────────────────────────────────────
+
+• The first raw-file scan found no matching inputs at the working-directory root
+  or in rg’s visible file set. I’m checking only for the three permitted
+  filename patterns, including ignored/hidden subdirectories; I won’t enumerate
+  or open anything else.
+
+• Ran find . -type f \( -name 'rows.jsonl' -o -name 'stimuli_pairs_split.jsonl'
+  │ -o -name '*.npz' \) -print
+  └ (no output)
+
+• Waiting for agents
+
+⚠ Heads up, you have less than 5% of your weekly limit left. Run /status for a
+  breakdown.
+
+• Finished waiting
+  └ No agents completed yet
+
+• Interacted with `/root/independent_calc`
+
+• Interacted with `/root/audit_formulas`
+
+• Interacted with `/root/schema_integrity`
+
+• Waiting for agents
+
+• Finished waiting
+  └ No agents completed yet
+
+• Interrupted `/root/audit_formulas`
+
+• Interrupted `/root/schema_integrity`
+
+• Interrupted `/root/independent_calc`
+
+────────────────────────────────────────────────────────────────────────────────
+
+• T3 stopped before Task 0 because the raw inputs are absent from /home/ambra/
+  t3/t3.
+
+  Found:
+
+  - rows.jsonl: 0
+  - stimuli_pairs_split.jsonl: 0
+  - *.npz: 0
+
+  Checks run:
+
+  pwd
+  rg --files -g 'rows.jsonl' -g 'stimuli_pairs_split.jsonl' -g '*.npz'
+
+  find . -type f \( -name 'rows.jsonl' -o -name 'stimuli_pairs_split.jsonl' -o
+  -name '*.npz' \) -print
+
+  I opened no reports or prior-analysis scripts and computed no numbers. Please
+  place the two JSONL files and NPZ directory anywhere beneath /home/ambra/t3/
+  t3, then rerun the prompt.
+
+─ Worked for 1m 40s ────────────────────────────────────────────────────────────
+ 
+ 
+» Ask Codex to do anything
+ 
+  gpt-5.6-sol ultra fast · ~/t3/t3 · Main [default]
+
+
+
+

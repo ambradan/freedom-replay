@@ -1,0 +1,337 @@
+{
+  "thresholds": {
+    "memlast": 0.65,
+    "semantic": 0.75,
+    "perm_rate": 0.1,
+    "seed_move": 0.05,
+    "fault_shift": 0.02
+  },
+  "selection": {
+    "layer": 20,
+    "position": "span_last"
+  },
+  "alpha": {
+    "value": 10000.0,
+    "source": "fallback 1e4 (no alpha key found)"
+  },
+  "run_line": "Run on the explore selection (layer 20, span_last), alpha 10000 (fallback 1e4 (no alpha key found)).",
+  "results": [
+    {
+      "id": "T1",
+      "name": "record integrity",
+      "status": "PASS",
+      "numbers": {
+        "rows": 900,
+        "max_abs_err": 0.0,
+        "mismatches": 0
+      },
+      "criterion": "any |delta-(lp-lc)| > 1e-03 stops everything",
+      "verdict": "all 900 rows consistent (max err 0.00e+00)"
+    },
+    {
+      "id": "T1b",
+      "name": "none activation constancy per clause",
+      "status": "PASS",
+      "numbers": {
+        "position": "prompt_last",
+        "max_abs_dev": 0.0
+      },
+      "criterion": "vectors identical within clause (determinism)",
+      "verdict": "max deviation 0.00e+00 at prompt_last"
+    },
+    {
+      "id": "REF",
+      "name": "recomputed headlines",
+      "status": "INFO",
+      "numbers": {
+        "dev_primary": 0.9508196721311475,
+        "optout_loco": 0.9032258064516129
+      },
+      "criterion": "must match the explore report",
+      "verdict": "dev 0.951, optout LOCO 0.903"
+    },
+    {
+      "id": "T2",
+      "name": "fault injection",
+      "status": "KILL",
+      "numbers": {
+        "faults": [
+          {
+            "corruption": "c1 swap B/C rows (delta+logp)",
+            "detected_by": "SILENT",
+            "headline_shift": -0.02066115702479332,
+            "kill": true,
+            "detail": "record self-consistent, behaviour shifts; no rows-vs-acts cross check exists"
+          },
+          {
+            "corruption": "c2 swap B/C activations",
+            "detected_by": "SILENT",
+            "headline_shift": -0.032786885245901565,
+            "kill": true,
+            "detail": "cache corruption invisible to every current check"
+          },
+          {
+            "corruption": "c3 delta edited, logp untouched",
+            "detected_by": "T1",
+            "headline_shift": 0.0,
+            "kill": false,
+            "detail": "reintroduces a record inconsistency that T1 detects by construction"
+          },
+          {
+            "corruption": "c4 rows for one condition removed",
+            "detected_by": "loader (items_incomplete)",
+            "headline_shift": 0.0,
+            "kill": false,
+            "detail": "load_behaviour reports incomplete items; 0 currently"
+          },
+          {
+            "corruption": "c5 split labels shuffled",
+            "detected_by": "manifest (pairs sha256)",
+            "headline_shift": 0.0,
+            "kill": false,
+            "detail": "recorded pairs sha 87695dd00902 no longer matches"
+          },
+          {
+            "corruption": "c6 span text edited",
+            "detected_by": "manifest (pairs sha256)",
+            "headline_shift": 0.0,
+            "kill": false,
+            "detail": "same detector as c5; hygiene counts also move"
+          }
+        ]
+      },
+      "criterion": "silent corruption moving a headline by > 0.02 forces check redesign",
+      "verdict": "silent corruption class confirmed (rows-acts decoupling): redesign required before the freeze = activation checksum in the harness for the next run, declared limitation for this dataset"
+    },
+    {
+      "id": "T7",
+      "name": "label-shuffle pipeline null",
+      "status": "PASS",
+      "numbers": {
+        "n": 50,
+        "mean": 0.4881967213114754,
+        "q2.5": 0.3971311475409836,
+        "q97.5": 0.5864754098360655
+      },
+      "criterion": "0.5 outside the shuffled interval means leakage, stop",
+      "verdict": "shuffled dev accuracy 0.488 [0.397, 0.586]"
+    },
+    {
+      "id": "T8",
+      "name": "pseudo-clause permutation null",
+      "status": "KILL",
+      "numbers": {
+        "permutations": 200,
+        "event_rate": 0.705,
+        "max_internal_median": 1.0
+      },
+      "criterion": "event rate >= 0.10 removes optout even as a candidate",
+      "verdict": "optout-like events in 70.5% of permutations (median best pseudo-clause 1.000)"
+    },
+    {
+      "id": "T9a",
+      "name": "ladder at memory_last (token-controlled)",
+      "status": "PASS",
+      "numbers": {
+        "layer": 22,
+        "dev_primary": 0.9508196721311475,
+        "optout_loco": 1.0,
+        "optout_ci_cluster": [
+          1.0,
+          1.0
+        ],
+        "per_clause_loco": {
+          "esperienza_tra_chiamate": 0.3548387096774194,
+          "genesis_quotidiano": 0.96,
+          "guasto_da_segnalare": 0.6774193548387096,
+          "memoria_episodica_automatica": 0.6774193548387096,
+          "onesta_non_sapere": 0.9032258064516129,
+          "optout_rispettati": 1.0,
+          "passato_pertinente": 0.6129032258064516,
+          "pubblicazione_autonoma": 0.9032258064516129
+        }
+      },
+      "criterion": "optout LOCO below 0.65 reclassifies span_last as token-local",
+      "verdict": "optout LOCO 1.000 at memory_last layer 22 (dev 0.951)"
+    },
+    {
+      "id": "T9b-k1",
+      "name": "final 1-word baseline at LOCO",
+      "status": "PASS",
+      "numbers": {
+        "optout": 0.41935483870967744,
+        "all_clauses": {
+          "esperienza_tra_chiamate": 0.5,
+          "genesis_quotidiano": 0.45999999999999996,
+          "guasto_da_segnalare": 0.43548387096774194,
+          "memoria_episodica_automatica": 0.46774193548387094,
+          "onesta_non_sapere": 0.5806451612903226,
+          "optout_rispettati": 0.41935483870967744,
+          "passato_pertinente": 0.3709677419354839,
+          "pubblicazione_autonoma": 0.5806451612903226
+        }
+      },
+      "criterion": "final-token baseline at or above the internal number kills C2",
+      "verdict": "optout 0.419 vs internal 0.903"
+    },
+    {
+      "id": "T9b-k3",
+      "name": "final 3-word baseline at LOCO",
+      "status": "PASS",
+      "numbers": {
+        "optout": 0.14516129032258063,
+        "all_clauses": {
+          "esperienza_tra_chiamate": 0.3225806451612903,
+          "genesis_quotidiano": 0.72,
+          "guasto_da_segnalare": 0.33870967741935487,
+          "memoria_episodica_automatica": 0.6774193548387096,
+          "onesta_non_sapere": 0.3709677419354839,
+          "optout_rispettati": 0.14516129032258063,
+          "passato_pertinente": 0.27419354838709675,
+          "pubblicazione_autonoma": 0.3709677419354839
+        }
+      },
+      "criterion": "final-token baseline at or above the internal number kills C2",
+      "verdict": "optout 0.145 vs internal 0.903"
+    },
+    {
+      "id": "T10",
+      "name": "LOCO-optout across layers",
+      "status": "PASS",
+      "numbers": {
+        "n_layers": 37,
+        "layers_ge_0.8": 12,
+        "max": 0.9032258064516129,
+        "argmax": 20,
+        "curve": [
+          0.371,
+          0.29,
+          0.419,
+          0.355,
+          0.419,
+          0.452,
+          0.419,
+          0.387,
+          0.484,
+          0.387,
+          0.452,
+          0.484,
+          0.581,
+          0.613,
+          0.548,
+          0.548,
+          0.71,
+          0.774,
+          0.871,
+          0.871,
+          0.903,
+          0.839,
+          0.871,
+          0.839,
+          0.839,
+          0.839,
+          0.806,
+          0.806,
+          0.806,
+          0.806,
+          0.742,
+          0.677,
+          0.71,
+          0.71,
+          0.677,
+          0.742,
+          0.677
+        ]
+      },
+      "criterion": "isolated-layer support reframes C2 as layer-fragile",
+      "verdict": "12/37 layers at or above 0.8 (max 0.903 at layer 20)"
+    },
+    {
+      "id": "T11",
+      "name": "semantic text baseline at LOCO",
+      "status": "PASS",
+      "numbers": {
+        "optout": 0.25806451612903225,
+        "all_clauses": {
+          "esperienza_tra_chiamate": 0.25806451612903225,
+          "genesis_quotidiano": 0.4,
+          "guasto_da_segnalare": 0.03225806451612903,
+          "memoria_episodica_automatica": 0.45161290322580644,
+          "onesta_non_sapere": 0.41935483870967744,
+          "optout_rispettati": 0.25806451612903225,
+          "passato_pertinente": 0.3870967741935484,
+          "pubblicazione_autonoma": 0.6451612903225806
+        }
+      },
+      "criterion": "optout at or above 0.75 kills beyond-surface-text",
+      "verdict": "semantic baseline optout 0.258 vs internal 0.903"
+    },
+    {
+      "id": "T12",
+      "name": "donor ablation for optout",
+      "status": "PASS",
+      "numbers": {
+        "per_donor_removed": {
+          "esperienza_tra_chiamate": 0.8387096774193549,
+          "genesis_quotidiano": 1.0,
+          "guasto_da_segnalare": 0.8387096774193549,
+          "memoria_episodica_automatica": 0.8709677419354839,
+          "onesta_non_sapere": 0.8709677419354839,
+          "passato_pertinente": 0.9354838709677419,
+          "pubblicazione_autonoma": 0.967741935483871
+        },
+        "min": 0.8387096774193549
+      },
+      "criterion": "single-donor dependence re-scopes C2 to pairwise transfer",
+      "verdict": "min accuracy 0.839 after removing esperienza_tra_chiamate"
+    },
+    {
+      "id": "T13",
+      "name": "within-optout confounds",
+      "status": "PASS",
+      "numbers": {
+        "crossed_by_family": {
+          "F2_telegram_scambio": 2,
+          "F4_telegram_report": 1,
+          "F1_telegram_direttiva": 1,
+          "F3_probe_passata": 1
+        },
+        "spearman_margin_vs_len": 0.3692081586493226
+      },
+      "criterion": "all crossed in one family, or |rho| > 0.5, weakens C3",
+      "verdict": "crossed families {'F2_telegram_scambio': 2, 'F4_telegram_report': 1, 'F1_telegram_direttiva': 1, 'F3_probe_passata': 1}; margin-length rho 0.369"
+    },
+    {
+      "id": "T14",
+      "name": "exact cluster sign-flip test (optout)",
+      "status": "INFO",
+      "numbers": {
+        "cluster_means": [
+          7.725,
+          6.086,
+          8.061,
+          9.761,
+          2.202,
+          0.869
+        ],
+        "p_exact": 0.015625
+      },
+      "criterion": "robustness statistic next to the bootstrap CI",
+      "verdict": "p = 0.0156 over 6 clusters"
+    },
+    {
+      "id": "T15",
+      "name": "seed stability of the optout cluster CI",
+      "status": "PASS",
+      "numbers": {
+        "base_ci": [
+          0.7586206896551724,
+          1.0
+        ],
+        "worst_bound_move": 0.0
+      },
+      "criterion": "any bound moving more than 0.05",
+      "verdict": "worst movement 0.000 across seeds 1-3"
+    }
+  ]
+}
