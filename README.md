@@ -134,3 +134,9 @@ The audit itself is pre-registered and reconstructible from a commit chain: 4b69
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Protocol freeze
+
+Planted-record protocol v1.0 frozen at commit 0aab6410a64e9e60fac3e0b7d4e2649657f7f4eb (2026-08-23).
+Manifest: FREEZE.sha256. Verify with `python3 verify.py`.
+materials/worksheet.jsonl is hash-committed in the manifest but never published (unredacted production context).
