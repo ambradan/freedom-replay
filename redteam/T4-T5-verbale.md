@@ -3,7 +3,7 @@
 ## T4 - Ricalcoli a mano
 
 - **Optout LOCO 28/31: FATTO.** Fonte: `tools/independent/codex-t3-session.jsonl`, la lista per-item prodotta dalla verifica cross-vendor (il log la ripete quattro volte, identica; contata una). Conteggio a mano su 31 righe: 28 margini sopra zero, tre negativi, M012 (-2.704), M015 (-2.158), M032 (-1.991). 28/31 = 0.903, combacia con il valore dichiarato. Il denominatore 31 e' stato verificato a parte contando gli item optout di train+dev in `stimuli_pairs_split.jsonl`.
-- **Dev 58/61: RINVIATO.** Il log Codex non contiene la lista per-item del dev; quella vive solo in `analysis/per_item.csv` sul pod, che al momento del ricalcolo era in stop. Da fare alla prossima accensione: 61 righe attese, tre negativi attesi.
+- **Dev 58/61: FATTO.** Fonte: `analysis/per_item.csv` sul pod, colonna `proj_margin`. Conteggio a mano su 61 righe: 58 margini sopra zero, tre negativi, M179 (-1.212), M209 (-5.284), M255 (-1.949). 58/61 = 0.951, combacia con il valore dichiarato. La colonna `internals_separated` conta 58 positivi, coerente col conteggio sui margini.
 - **Nota sulla catena.** Per la parte optout il ricalcolo umano e' stato fatto sull'output della pipeline indipendente, non sulla mia analisi. Le tre gambe (analisi originale, verifica Codex, conteggio a mano) danno lo stesso numero.
 
 ## T5 - Audit dello strumento
