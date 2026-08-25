@@ -1,0 +1,4 @@
+analysis.log
+launch*.sh
+/shards/
+crossed-results.tar.gz
