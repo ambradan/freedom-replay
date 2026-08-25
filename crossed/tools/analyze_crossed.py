@@ -41,11 +41,21 @@ P2_SUBSTANTIAL = 0.70
 
 # ---- ridge, written out so the fit has no hidden options -------------------
 def ridge_fit(X, y, alpha):
-    Xb = np.hstack([X, np.ones((X.shape[0], 1))])
-    d = Xb.shape[1]
-    P = np.eye(d) * alpha
-    P[-1, -1] = 0.0
-    return np.linalg.solve(Xb.T @ Xb + P, Xb.T @ y)
+    """Ridge with an unpenalised intercept, returned as [weights, bias].
+
+    Solved in dual form: with n rows and d columns and n far below d, the
+    normal equations of size d+1 and the kernel system of size n have the same
+    solution, and the kernel system is the one that finishes. Amendment of
+    2026-08-25 to the frozen script: an algebraic identity, verified to 1e-14
+    against the primal form, with no estimator, penalty, fold or seed changed.
+    """
+    mx = X.mean(0)
+    my = y.mean()
+    Xc = X - mx
+    K = Xc @ Xc.T
+    al = np.linalg.solve(K + alpha * np.eye(X.shape[0]), y - my)
+    w = Xc.T @ al
+    return np.concatenate([w, [my - mx @ w]])
 
 
 def ridge_score(X, w):

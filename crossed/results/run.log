@@ -1,0 +1,26 @@
+nohup: ignoring input
+coppie controllate: 192
+PARITA' OK: stessa posizione della sonda, stessa lunghezza, stessi token del record
+item: 400 totali, 0 gia' fatti, 400 da fare
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [00:06<00:24,  6.22s/it]Fetching 5 files:  40%|████      | 2/5 [00:11<00:17,  5.74s/it]Fetching 5 files:  60%|██████    | 3/5 [00:14<00:08,  4.50s/it]Fetching 5 files:  80%|████████  | 4/5 [00:16<00:03,  3.40s/it]Fetching 5 files: 100%|██████████| 5/5 [00:16<00:00,  2.36s/it]Fetching 5 files: 100%|██████████| 5/5 [00:16<00:00,  3.38s/it]
+[transformers] The following generation flags are not valid and may be ignored: ['output_hidden_states']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:   0%|          | 1/399 [00:00<02:43,  2.43it/s]Loading weights:   4%|▍         | 15/399 [00:00<00:10, 37.51it/s]Loading weights:   6%|▋         | 25/399 [00:00<00:07, 52.87it/s]Loading weights:   9%|▉         | 37/399 [00:00<00:05, 65.95it/s]Loading weights:  12%|█▏        | 46/399 [00:00<00:04, 72.24it/s]Loading weights:  14%|█▍        | 55/399 [00:00<00:04, 73.57it/s]Loading weights:  16%|█▌        | 64/399 [00:01<00:04, 72.87it/s]Loading weights:  18%|█▊        | 73/399 [00:01<00:04, 68.58it/s]Loading weights:  21%|██        | 82/399 [00:01<00:04, 71.74it/s]Loading weights:  23%|██▎       | 91/399 [00:01<00:04, 72.80it/s]Loading weights:  25%|██▌       | 100/399 [00:01<00:03, 75.32it/s]Loading weights:  27%|██▋       | 108/399 [00:01<00:04, 72.43it/s]Loading weights:  29%|██▉       | 116/399 [00:01<00:04, 64.51it/s]Loading weights:  32%|███▏      | 126/399 [00:01<00:03, 70.94it/s]Loading weights:  34%|███▍      | 136/399 [00:02<00:03, 74.88it/s]Loading weights:  36%|███▌      | 144/399 [00:02<00:03, 72.92it/s]Loading weights:  38%|███▊      | 152/399 [00:02<00:03, 68.32it/s]Loading weights:  40%|████      | 160/399 [00:02<00:03, 64.34it/s]Loading weights:  43%|████▎     | 170/399 [00:02<00:03, 70.59it/s]Loading weights:  45%|████▌     | 180/399 [00:02<00:02, 74.27it/s]Loading weights:  47%|████▋     | 188/399 [00:02<00:02, 73.36it/s]Loading weights:  49%|████▉     | 196/399 [00:02<00:02, 69.08it/s]Loading weights:  51%|█████     | 203/399 [00:03<00:02, 66.32it/s]Loading weights:  53%|█████▎    | 213/399 [00:03<00:02, 72.26it/s]Loading weights:  56%|█████▌    | 224/399 [00:03<00:02, 76.15it/s]Loading weights:  58%|█████▊    | 232/399 [00:03<00:02, 76.67it/s]Loading weights:  60%|██████    | 240/399 [00:03<00:02, 74.22it/s]Loading weights:  62%|██████▏   | 248/399 [00:03<00:02, 66.15it/s]Loading weights:  65%|██████▍   | 258/399 [00:03<00:01, 73.91it/s]Loading weights:  67%|██████▋   | 269/399 [00:03<00:01, 79.36it/s]Loading weights:  70%|██████▉   | 279/399 [00:04<00:01, 84.54it/s]Loading weights:  72%|███████▏  | 288/399 [00:04<00:01, 81.75it/s]Loading weights:  74%|███████▍  | 297/399 [00:04<00:01, 75.19it/s]Loading weights:  76%|███████▋  | 305/399 [00:04<00:01, 68.76it/s]Loading weights:  78%|███████▊  | 313/399 [00:04<00:01, 68.04it/s]Loading weights:  81%|████████  | 323/399 [00:04<00:01, 73.16it/s]Loading weights:  83%|████████▎ | 331/399 [00:04<00:00, 72.23it/s]Loading weights:  85%|████████▍ | 339/399 [00:04<00:00, 68.46it/s]Loading weights:  87%|████████▋ | 346/399 [00:05<00:00, 66.33it/s]Loading weights:  89%|████████▉ | 355/399 [00:05<00:00, 67.49it/s]Loading weights:  91%|█████████ | 362/399 [00:05<00:00, 67.70it/s]Loading weights:  92%|█████████▏| 369/399 [00:05<00:00, 61.47it/s]Loading weights:  95%|█████████▍| 379/399 [00:05<00:00, 67.46it/s]Loading weights:  97%|█████████▋| 389/399 [00:05<00:00, 72.37it/s]Loading weights:  99%|█████████▉| 397/399 [00:05<00:00, 71.38it/s]Loading weights: 100%|██████████| 399/399 [00:05<00:00, 69.09it/s]
+25/400
+50/400
+75/400
+100/400
+125/400
+150/400
+175/400
+200/400
+225/400
+250/400
+275/400
+300/400
+325/400
+350/400
+375/400
+400/400
+fatto: crossed_rows.jsonl e crossed_acts.npz
